@@ -15,13 +15,18 @@ def index():
     return render_template_string('''
     <html>
         <body>
+            <h1>Welcome to My Super Secure Login Page!</h1>
+            <p>Alright, here's the deal! I have a super top-secret password. It's so secret that even I have to write it down! 🤫</p>
+            <p>My password is a whopping <strong>1000 characters long</strong> and it is impenetrable. You will <em>NEVER</em> guess it! 😎💻</p>
+            <p>If you think you're clever enough to crack it, prove it below! Enter your <strong>Username</strong> and <strong>Password</strong> to try and access the super-secure area.</p>
             <form action="/login" method="post">
                 <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username"><br><br>
+                <input type="text" id="username" name="username" placeholder="Type your username here..."><br><br>
                 <label for="password">Password:</label><br>
-                <input type="text" id="password" name="password"><br><br>
+                <input type="password" id="password" name="password" placeholder="Enter your secret password..."><br><br>
                 <input type="submit" value="Submit">
             </form>
+            <p>Good luck, you'll need it!</p>
         </body>
     </html>
     ''')
