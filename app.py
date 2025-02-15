@@ -1,9 +1,12 @@
 from flask import Flask, request, render_template_string
 import sqlite3
+import logging
 
 app = Flask(__name__)
 
 DATABASE = 'vulnerable.db'
+
+logging.basicConfig(level=logging.DEBUG)
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)
@@ -35,6 +38,8 @@ def index():
 def login():
     username = request.form['username']
     password = request.form['password']
+
+    logging.debug(f"Recieved request for login: {username}, {password}")
     
     # vulnerable SQL query
     conn = get_db_connection()
@@ -47,8 +52,10 @@ def login():
     conn.close()
 
     if user:
+        logging.debug(f"Successful login attempt for {username}!")
         return f"Logged in as {user['username']}"
     else:
+        logging.debug(f"Unsuccessful login for {username}, {password}")
         return "Invalid credentials"
 
 if __name__ == '__main__':
